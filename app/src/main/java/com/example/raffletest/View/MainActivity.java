@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             Toast.makeText(getApplicationContext(), "모두 입력해 주세요. ", Toast.LENGTH_SHORT).show();
         } else {
             Random random = new Random();
-            int n = random.nextInt(randomStr.length - 1);
+            int n = random.nextInt(randomStr.length);
             resultTv.setText(randomStr[n]);
         }
     }
