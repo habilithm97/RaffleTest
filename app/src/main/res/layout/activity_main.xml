@@ -13,6 +13,13 @@
         android:text="추첨할 내용을 입력해서 추첨 버튼을 눌러주세요. "
         android:textSize="17sp" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
     <TextView
         android:id="@+id/resultTv"
         android:layout_width="match_parent"
