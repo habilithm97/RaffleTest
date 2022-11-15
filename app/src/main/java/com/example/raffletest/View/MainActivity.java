@@ -6,8 +6,10 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +24,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     MainContract.Presenter presenter;
 
     TextView resultTv;
-    EditText edt, edt1, edt2, edt3;
-    //String str, str1, str2, str3;
+    EditText edt, edt1;
+    //String str, str1;
     ProgressBar progressBar;
     ProgressDialog progressDialog;
     String[] randomStr;
+    LinearLayout layout;
+    int i = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +42,27 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     private void init() {
+        layout = (LinearLayout)findViewById(R.id.layout);
         resultTv = (TextView)findViewById(R.id.resultTv);
         edt = (EditText)findViewById(R.id.edt);
         edt1 = (EditText)findViewById(R.id.edt1);
-        edt2 = (EditText)findViewById(R.id.edt2);
-        edt3 = (EditText)findViewById(R.id.edt3);
+
         Button addBtn = (Button)findViewById(R.id.addBtn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.addEdt();
+            }
+        });
+
         Button deleteBtn = (Button)findViewById(R.id.deleteBtn);
+
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setIndeterminate(false); // 불확정적
 
         /*
         str = edt.getText().toString();
         str1 = edt1.getText().toString();
-        str2 = edt2.getText().toString();
-        str3 = edt3.getText().toString();
          */
 
         Button raffleBtn = (Button)findViewById(R.id.raffleBtn);
@@ -65,9 +75,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    public void addEdtResult() {
+        i++;
+        EditText editText = new EditText(getApplicationContext());
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        editText.setLayoutParams(p);
+        editText.setHint(i + "번");
+        layout.addView(editText);
+    }
+
+    @Override
     public void raffleResult() {
-        randomStr = new String[]{edt.getText().toString(), edt1.getText().toString(), edt2.getText().toString(), edt3.getText().toString()};
-        if (edt.getText().toString().equals("") || edt1.getText().toString().equals("") || edt2.getText().toString().equals("") || edt3.getText().toString().equals("")) {
+        randomStr = new String[]{edt.getText().toString(), edt1.getText().toString()};
+        if (edt.getText().toString().equals("") || edt1.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "모두 입력해 주세요. ", Toast.LENGTH_SHORT).show();
         } else {
             progressBar.setVisibility(View.VISIBLE);

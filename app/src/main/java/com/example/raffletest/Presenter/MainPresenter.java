@@ -11,4 +11,9 @@ public class MainPresenter implements MainContract.Presenter {
     public void raffle() {
         view.raffleResult();
     }
+
+    @Override
+    public void addEdt() {
+        view.addEdtResult();
+    }
 }

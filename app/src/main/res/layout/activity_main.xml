@@ -43,6 +43,7 @@
             android:layout_above="@+id/bottom">
 
             <LinearLayout
+                android:id="@+id/layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -59,18 +60,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="2번" />
-
-                <EditText
-                    android:id="@+id/edt2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="3번" />
-
-                <EditText
-                    android:id="@+id/edt3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="4번" />
 
             </LinearLayout>
         </ScrollView>
