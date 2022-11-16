@@ -43,7 +43,6 @@
             android:layout_above="@+id/bottom">
 
             <LinearLayout
-                android:id="@+id/layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -61,6 +60,13 @@
                     android:layout_height="wrap_content"
                     android:hint="2번" />
 
+                <LinearLayout
+                    android:id="@+id/layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 

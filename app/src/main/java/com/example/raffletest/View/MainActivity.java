@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     String[] randomStr;
     LinearLayout layout;
     int i = 2;
+    int count = 0;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         });
 
         Button deleteBtn = (Button)findViewById(R.id.deleteBtn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.deleteEdt();
+            }
+        });
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setIndeterminate(false); // 불확정적
@@ -77,11 +85,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void addEdtResult() {
         i++;
-        EditText editText = new EditText(getApplicationContext());
+        editText = new EditText(getApplicationContext());
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         editText.setLayoutParams(p);
         editText.setHint(i + "번");
         layout.addView(editText);
+    }
+
+    @Override
+    public void deleteEdtResult() {
+        layout.removeAllViews();
+        i = 2;
     }
 
     @Override
