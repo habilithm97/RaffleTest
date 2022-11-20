@@ -4,12 +4,12 @@ public interface MainContract {
     interface View {
         void raffleResult();
         void addEdtResult();
-        void deleteEdtResult();
+        void resetEdtResult();
     }
 
     interface Presenter {
         void raffle();
         void addEdt();
-        void deleteEdt();
+        void resetEdt();
     }
 }

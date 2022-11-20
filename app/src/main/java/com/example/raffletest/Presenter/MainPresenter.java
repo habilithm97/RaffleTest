@@ -18,7 +18,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void deleteEdt() {
-        view.deleteEdtResult();
+    public void resetEdt() {
+        view.resetEdtResult();
     }
 }

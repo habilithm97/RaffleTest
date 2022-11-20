@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     String[] randomStr;
     LinearLayout layout;
     int i = 2;
-    int count = 0;
+    int btnCnt = 0;
     EditText editText;
 
     @Override
@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private void init() {
         layout = (LinearLayout)findViewById(R.id.layout);
         resultTv = (TextView)findViewById(R.id.resultTv);
-        edt = (EditText)findViewById(R.id.edt);
-        edt1 = (EditText)findViewById(R.id.edt1);
 
         Button addBtn = (Button)findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,11 +55,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             }
         });
 
-        Button deleteBtn = (Button)findViewById(R.id.deleteBtn);
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
+        Button resetBtn = (Button)findViewById(R.id.resetBtn);
+        resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.deleteEdt();
+                presenter.resetEdt();
             }
         });
 
@@ -84,24 +82,27 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void addEdtResult() {
+        btnCnt++;
         i++;
         editText = new EditText(getApplicationContext());
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         editText.setLayoutParams(p);
         editText.setHint(i + "번");
+        editText.setId(btnCnt);
         layout.addView(editText);
     }
 
     @Override
-    public void deleteEdtResult() {
+    public void resetEdtResult() {
         layout.removeAllViews();
         i = 2;
     }
 
     @Override
     public void raffleResult() {
-        randomStr = new String[]{edt.getText().toString(), edt1.getText().toString()};
-        if (edt.getText().toString().equals("") || edt1.getText().toString().equals("")) {
+        randomStr = new String[]{edt.getText().toString(), edt1.getText().toString(), editText.getText().toString()};
+
+        if (edt.getText().toString().equals("") || edt1.getText().toString().equals("") || editText.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "모두 입력해 주세요. ", Toast.LENGTH_SHORT).show();
         } else {
             progressBar.setVisibility(View.VISIBLE);

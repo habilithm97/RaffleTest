@@ -43,30 +43,11 @@
             android:layout_above="@+id/bottom">
 
             <LinearLayout
+                android:id="@+id/layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:hint="1번" />
-
-                <EditText
-                    android:id="@+id/edt1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="2번" />
-
-                <LinearLayout
-                    android:id="@+id/layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" >
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
@@ -74,30 +55,40 @@
             android:id="@+id/bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/raffleBtn"
+            android:layout_above="@+id/resetBtn"
             android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/inputEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:hint="갯수"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/addBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="추가"
-                android:background="@drawable/custom_btn" />
-
-            <Button
-                android:id="@+id/deleteBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="삭제"
+                android:text="추가"
+                android:textSize="20sp"
                 android:background="@drawable/custom_btn" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_above="@+id/raffleBtn"
+            android:text="초기화"
+            android:textSize="20sp"
+            android:background="@drawable/custom_btn" />
 
         <Button
             android:id="@+id/raffleBtn"
