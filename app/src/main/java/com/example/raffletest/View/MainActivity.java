@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void addEdtResult() {
+        layout.removeAllViews();
+
         int num = Integer.parseInt(inputEdt.getText().toString());
 
         if(inputEdt.getText().toString().equals("")) {
