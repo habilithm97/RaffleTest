@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     ProgressDialog progressDialog;
     String[] randomStr;
     LinearLayout layout;
-    int i = 2;
-    int btnCnt = 0;
-    EditText editText;
+    EditText editText, inputEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private void init() {
         layout = (LinearLayout)findViewById(R.id.layout);
         resultTv = (TextView)findViewById(R.id.resultTv);
+        inputEdt = (EditText)findViewById(R.id.inputEdt);
 
         Button addBtn = (Button)findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,20 +81,25 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void addEdtResult() {
-        btnCnt++;
-        i++;
-        editText = new EditText(getApplicationContext());
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        editText.setLayoutParams(p);
-        editText.setHint(i + "번");
-        editText.setId(btnCnt);
-        layout.addView(editText);
+        int num = Integer.parseInt(inputEdt.getText().toString());
+
+        if(inputEdt.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "갯수를 입력해주세요. ", Toast.LENGTH_SHORT).show();
+        } else {
+            for(int i = 0; i < num; i++) {
+                editText = new EditText(getApplicationContext());
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                editText.setLayoutParams(p);
+                editText.setHint(i + "번");
+                editText.setId(num);
+                layout.addView(editText);
+            }
+        }
     }
 
     @Override
     public void resetEdtResult() {
         layout.removeAllViews();
-        i = 2;
     }
 
     @Override

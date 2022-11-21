@@ -64,8 +64,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
-                android:hint="갯수"
-                android:gravity="center" />
+                android:text="2"
+                android:gravity="center"
+                android:inputType="number" />
 
             <Button
                 android:id="@+id/addBtn"
@@ -74,7 +75,8 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:text="추가"
-                android:textSize="20sp"
+                android:textColor="#ff0000ff"
+                android:textSize="25sp"
                 android:background="@drawable/custom_btn" />
 
         </LinearLayout>
@@ -87,7 +89,8 @@
             android:layout_weight="1"
             android:layout_above="@+id/raffleBtn"
             android:text="초기화"
-            android:textSize="20sp"
+            android:textColor="#ffff0000"
+            android:textSize="25sp"
             android:background="@drawable/custom_btn" />
 
         <Button
@@ -96,8 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_alignParentBottom="true"
-            android:text="추첨하기"
-            android:textSize="27sp"
+            android:text="추첨"
+            android:textSize="25sp"
             android:background="@drawable/custom_btn" />
 
     </RelativeLayout>
