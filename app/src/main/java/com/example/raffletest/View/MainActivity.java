@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         if(inputEdt.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "갯수를 입력해주세요. ", Toast.LENGTH_SHORT).show();
         } else {
-            for(int i = 0; i < num; i++) {
+            for(int i = 1; i <= num; i++) {
                 editText = new EditText(getApplicationContext());
                 LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 editText.setLayoutParams(p);
