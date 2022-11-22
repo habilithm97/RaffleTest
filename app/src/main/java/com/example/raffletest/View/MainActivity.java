@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -97,6 +98,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 layout.addView(editText);
             }
         }
+        keybordDown(); // 키보드 내리기
+    }
+
+    public void keybordDown() {
+        InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(inputEdt.getWindowToken(), 0);
     }
 
     @Override
