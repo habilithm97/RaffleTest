@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void resetEdtResult() {
         layout.removeAllViews();
+        strList.clear();
         resultTv.setText("결과가 여기에 표시됩니다. ");
     }
 
