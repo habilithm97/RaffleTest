@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     MainContract.Presenter presenter;
 
     TextView resultTv;
-    EditText edt, edt1;
-    //String str, str1;
     ProgressBar progressBar;
     ProgressDialog progressDialog;
     String[] randomStr;
     LinearLayout layout;
-    EditText editText, inputEdt;
+    EditText inputEdt;
+    EditText editText;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setIndeterminate(false); // 불확정적
 
-        /*
-        str = edt.getText().toString();
-        str1 = edt1.getText().toString();
-         */
-
         Button raffleBtn = (Button)findViewById(R.id.raffleBtn);
         raffleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void addEdtResult() {
         layout.removeAllViews();
 
-        int num = Integer.parseInt(inputEdt.getText().toString());
+        num = Integer.parseInt(inputEdt.getText().toString());
 
         if(inputEdt.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "갯수를 입력해주세요. ", Toast.LENGTH_SHORT).show();
@@ -94,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 editText.setLayoutParams(p);
                 editText.setHint(i + "번");
-                editText.setId(num);
+                editText.setId(i);
                 layout.addView(editText);
             }
         }
@@ -109,13 +104,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void resetEdtResult() {
         layout.removeAllViews();
+        resultTv.setText("결과가 여기에 표시됩니다. ");
     }
 
     @Override
     public void raffleResult() {
-        randomStr = new String[]{edt.getText().toString(), edt1.getText().toString(), editText.getText().toString()};
+        randomStr = new String[]{editText.getText().toString()};
 
-        if (edt.getText().toString().equals("") || edt1.getText().toString().equals("") || editText.getText().toString().equals("")) {
+        if (editText.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "모두 입력해 주세요. ", Toast.LENGTH_SHORT).show();
         } else {
             progressBar.setVisibility(View.VISIBLE);
