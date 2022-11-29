@@ -19,6 +19,7 @@ import com.example.raffletest.Presenter.MainContract;
 import com.example.raffletest.Presenter.MainPresenter;
 import com.example.raffletest.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -27,11 +28,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     TextView resultTv;
     ProgressBar progressBar;
     ProgressDialog progressDialog;
-    String[] randomStr;
     LinearLayout layout;
     EditText inputEdt;
     EditText editText;
     int num;
+    ArrayList<String> strList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void init() {
         layout = (LinearLayout)findViewById(R.id.layout);
+        strList = new ArrayList<String>();
         resultTv = (TextView)findViewById(R.id.resultTv);
         inputEdt = (EditText)findViewById(R.id.inputEdt);
 
@@ -109,7 +111,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void raffleResult() {
-        randomStr = new String[]{editText.getText().toString()};
+
+        // 동적으로 생성한 View는 id가 할당되어 있지 않기 때문에 레이아웃 내의 자식들을 순회해서 텍스트를 가져옴
+        // 가져온 텍스트들을 ArrayList에 추가함
+       if(num > 0) {
+            for(int i = 0; i < num; i++) {
+                EditText edt = (EditText) layout.getChildAt(i);
+                strList.add(edt.getText().toString());
+            }
+        }
 
         if (editText.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "모두 입력해 주세요. ", Toast.LENGTH_SHORT).show();
@@ -161,8 +171,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             progressDialog.dismiss();
             
             Random random = new Random();
-            int n = random.nextInt(randomStr.length);
-            resultTv.setText(randomStr[n]);
+            // ArrayList의 크기 만큼 난수를 돌려서 변수 n에 할당 후 출력
+            int n = random.nextInt(strList.size());
+            resultTv.setText(strList.get(n));
         }
     }
 }
